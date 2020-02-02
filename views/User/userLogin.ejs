@@ -1,13 +1,24 @@
-<html>
-<body>
+<!DOCTYPE html>
+<html lang="en">
+<! HEAD -->
+<%- include('../partials/head') %>
+<! HEAD -->
 
+<body> 
     <div class=container>
         <main>
             <div>
                 <h2>Loguearse</h2>
+                <% if (typeof errors != 'undefined') { %>     
+                    <ul>
+                        <% for (i = 0; i < errors.length; i++) { %>
+                            <li><%= errors[i].msg%></li>        
+                        <% } %>
+                    </ul>
+                <% } %>
                 <form action="/users/login" method="POST">
                     <label for="email">Email</label><br>
-                    <input type="email" name="email" id="email" value="<%= typeof info != 'undefined' ? info.email : '' %>"><br>
+                    <input type="email" name="email" id="email" value="<%= typeof data != 'undefined' ? data.email : '' %>"><br>
                     <label for="contrasenia">Contraseña</label><br>
                     <input type="password" name="password" id="contrasenia"><br>
                     <button class="btn btn-dark" type="submit">Iniciar sesion</button>
@@ -18,5 +29,9 @@
 
     </div>
 
+    <! FOOTER -->
+    <%- include('../partials/footer') %>
+    <! FOOTER -->
 </body>
+
 </html>

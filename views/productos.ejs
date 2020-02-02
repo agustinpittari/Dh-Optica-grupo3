@@ -1,38 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
 <! HEAD -->
-    <%- include('./partials/head') %>
-    <! HEAD -->
+<%- include('./partials/head') %>
+<! HEAD -->
 
-        <body>
-
-            <! HEADER -->
-                <%- include('./partials/header') %>
-                <! HEADER -->
-                    <div class="container">
-                        <div class="row articulos">
-                            <% for(i = 0; i < productos.length; i++) { %>
-                            <section class="col-sm-12 col-md-6 col-lg-3">
-                                <div class="article-box">
-                                    <a href="/products/<%= productos[i].id %>">
-                                        <img src="<%= productos[i].image %>" alt="imagen producto"
-                                            class="imagen-producto">
-                                        <div class="article-data">
-                                            <h3><%= productos[i].name %></h3>
-                                            <p><%= productos[i].description %></p>
-                                        </div>
-                                    </a>
-                                    <p>$<%= productos[i].price %></p>
-                                    <p><%= productos[i].colors %></p>
-                                </div>
-                            </section>
-                            <% } %>
-                        </div>
+<body>
+    
+    <! HEADER -->
+    <%- include('./partials/header') %>
+    <! HEADER -->
+    <div class="container">
+        <div class="row articulos">
+            <% for(i = 0; i < productos.length; i++) { %>
+                <section class="col-sm-12 col-md-6 col-lg-3">
+                    <div class="article-box">
+                        <a href="/products/<%= productos[i].id %>">
+                            <img src="<%= productos[i].image %>" alt="imagen producto"
+                            class="imagen-producto">
+                            <div class="article-data">
+                                <h3><%= productos[i].name %></h3>
+                                <p><%= productos[i].description %></p>
+                            </div>
+                        </a>
+                        <p>$<%= productos[i].price %></p>
+                        <p><%= productos[i].colors %></p>
                     </div>
-                    
+                </section>
+                <% } %>
+            </div>
+        </div>
+        
         <! FOOTER -->
         <%- include('./partials/footer') %>
         <! FOOTER -->
-        </body>
-
-</html>
+    </body>
+    
+    </html>

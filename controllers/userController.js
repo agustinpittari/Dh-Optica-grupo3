@@ -10,24 +10,32 @@ module.exports = {
     index: (req, res) => {
         res.render('User/userList', {usuarios: users})
     },
-    createForm: (req, res) => {
-        res.render('User/userCreate')
+    registerForm: (req, res) => {
+        res.render('User/userRegister')
     },
-    create: (req, res) => {
+    register: (req, res) => {
+        let errors = validationResult(req)
 
-        let usuario = {
-            id : users.length + 1,
-            first_name : req.body.first_name,
-            last_name : req.body.last_name,
-            email : req.body.email,
-            gender: req.body.gender,
-            password: bcrypt.hashSync(req.body.password, 10)
+        if(errors.isEmpty()){
+
+            let usuario = {
+                id : users.length + 1,
+                first_name : req.body.first_name,
+                last_name : req.body.last_name,
+                email : req.body.email,
+                gender: req.body.gender,
+                password: bcrypt.hashSync(req.body.password, 10)
+            }
+            users.push(usuario)
+    
+            fs.writeFileSync(usersFilePath, JSON.stringify(users))
+    
+            res.redirect('/users')
+        } else {
+            return res.render('User/userRegister' ,{errors: errors.errors, data: req.body})
         }
-        users.push(usuario)
 
-        fs.writeFileSync(usersFilePath, JSON.stringify(users))
-
-        res.redirect('/users')
+        
     },
     editForm: (req, res) => {
         let usuario = users.find(function(u){

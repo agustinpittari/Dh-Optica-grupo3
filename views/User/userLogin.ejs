@@ -7,7 +7,7 @@
                 <h2>Loguearse</h2>
                 <form action="/users/login" method="POST">
                     <label for="email">Email</label><br>
-                    <input type="email" name="email" id="email" <%= typeof info != 'undefined' ? info.email : '' %>><br>
+                    <input type="email" name="email" id="email" value="<%= typeof info != 'undefined' ? info.email : '' %>"><br>
                     <label for="contrasenia">Contraseña</label><br>
                     <input type="password" name="password" id="contrasenia"><br>
                     <button class="btn btn-dark" type="submit">Iniciar sesion</button>

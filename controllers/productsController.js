@@ -5,17 +5,17 @@ const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
 
 const controller = {
     products: (req, res) => {
-        res.render('productos', {productos: products})
+        res.render('Product/productos', {productos: products})
     },
     productDetail: (req, res) => {
         let id = req.params.id
         let producto = products.find(p => p.id == id)
-        res.render('details', {
+        res.render('Product/details', {
             producto: producto,
         })
     },
     createForm: (req, res) => {
-        res.render('agregar-producto')
+        res.render('Product/agregar-producto')
     },
     create: (req, res) => {
 
@@ -38,7 +38,7 @@ const controller = {
 			return p.id == req.params.id
 		})
 
-        res.render('editProduct', {producto: producto})
+        res.render('Product/editProduct', {producto: producto})
     },
     update: (req,res) => {
 		let arrayIndex
@@ -51,7 +51,6 @@ const controller = {
 
 			return false
 		})
-		console.log('el array es',arrayIndex);
 		
 		let editado = {
 			...product,

@@ -102,6 +102,11 @@ module.exports = {
             }
             
             req.session.usuarioLogueado = usuarioALoguearse
+
+            if (req.body.recordame != undefined){
+                res.cookie('recordame',
+                usuarioALoguearse.email, {maxAge: 120000})
+            }
             res.redirect('/users/' + req.session.usuarioLogueado.id)
         } else {
             return res.render('User/userLogin' ,{errors: errors.errors, data: req.body})

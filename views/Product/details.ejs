@@ -24,68 +24,25 @@
     
     <div class=container>
         
-        <div class="header-container">
-            
-            <header>
-                <div class="logo-title">
-                    <div class="logo">
-                        <a href="home.html">
-                            <img src="/images/logo.png" alt="logo" height="100px">
-                        </a>
-                    </div>
-                    <h2>TITULO</h2>
-                </div>
-                <div class="buscador-carrito row">
-                    <div class="input-group mb-3 col-sm-12 col-md-4">
-                        <input type="text" class="form-control" placeholder="Buscar" aria-label="Recipient's username"
-                        aria-describedby="button-addon2">
-                        <div class="input-group-append">
-                            <button class="btn btn-outline-secondary" type="button" id="button-addon2"><i
-                                class="fas fa-search"></i></button>
-                            </div>
-                        </div>
-                        <a href="" class="carrito"><i class="fas fa-shopping-cart fa-2x col-sm-12 col-md-2"></i></a>
-                    </div>
-                    <div class="nav-container">
-                        
-                        <ul class="nav-bar row">
-                            <li class="col-12 col-md-3"><a href="">Home</a></li>
-                            <li class="col-12 col-md-3"><a href="">Lentes de sol</a></li>
-                            <li class="col-12 col-md-3"><a href="">Recetados</a></li>
-                            <li class="col-12 col-md-3"><a href="">Lentes de contacto</a></li>
-                        </ul>
-                    </div>
-                </header>
-                
-            </div>
-            
-            
-            
-            <div class="padre">	
-                
-                
-                <div class="fotos">
-                    
+        <! HEADER -->
+        <%- include('../partials/header') %>
+        <! HEADER -->
+  
+            <div class="padre">	    
+                <div class="fotos">    
                     <div class="foto-1">
                         <img id="1" class="thumb normal" src="<%= producto.image %>" alt="mountains" onmouseover="preview(this)"/>
                     </div>
                     <div class="foto-2">
-                        <img id="2" class="thumb normal" src="<%= producto.image %>" alt="desert" onmouseover="preview(this)"/>
-                        
+                        <img id="2" class="thumb normal" src="<%= producto.image %>" alt="desert" onmouseover="preview(this)"/>    
                     </div>
                     <div class="foto-3">
                         <img id="3" class="thumb normal" src="<%= producto.image %>" alt="highway" onmouseover="preview(this)"/>
-                    </div>	
-                    
-                </div>	
-                
-                <div class="foto-central">
-                    
-                    <img id="0" class="preview normal" src="" alt="preview" />
-                    
-                </div>
-                
-                
+                    </div>	                    
+                </div>	                
+                <div class="foto-central">                    
+                    <img id="0" class="preview normal" src="" alt="preview" />                    
+                </div>     
                 <div class="car">
                     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
@@ -109,8 +66,6 @@
                         </a>
                     </div>
                 </div>
-                
-                
                 <div class="datos">
                     
                     <h3><%= producto.name %></h3>
@@ -127,38 +82,20 @@
                     
                     <button type="button" class="btn btn-info">Comprar</button>
                     <button type="button" class="btn btn-success">Agregar a carrito</button>
-                    
+                    <% if(usuarioLogueado != undefined) {%> 
                     <form action="/products/edit/<%= producto.id %>" method="get">
-                        <input type="submit" value="Editar">
+                        <button type="submit" class="btn btn-danger">Editar</button>
                     </form>
                     <form action="/products/delete/<%= producto.id %>?_method=DELETE" method="POST">
-                        <input type="submit" value="Eliminar">
+                        <button type="submit" class="btn btn-danger">Eliminar</button>
                     </form>
+                    <% } %>
                 </div>		
                 
-                
-            </div>
-            
-            
-            
-            
-            
-            
-            <footer>
-                <div class="contact-container">
-                    <h2>Contacto</h2>
-                    <div class="row footer-row">
-                        <ul class="contact-bar">
-                            <li class="col-12 col-md-2"><a href=""><i class="fab fa-whatsapp fa-2x"> Whatsapp</i></a></li>
-                            <li class="col-12 col-md-2"><a href=""><i class="fab fa-instagram fa-2x"> Instagram</i></a></li>
-                            <li class="col-12 col-md-2"><a href=""><i class="fab fa-facebook-f fa-2x"> Facebook</i></a></li>
-                            <li class="col-12 col-md-2"><a href=""><i class="fab fa-twitter fa-2x"> Twitter</i></a></li>
-                            <li class="col-12 col-md-2"><a href=""><i class="fas fa-envelope fa-2x"> Email</i></a></li>
-                        </ul>
-                    </div>
-                </div>
-            </footer>
-            
+            </div>         
+            <! FOOTER -->
+            <%- include('../partials/footer') %>
+            <! FOOTER -->
         </div>
         
         

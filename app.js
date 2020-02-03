@@ -1,14 +1,16 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-var methodOverride = require('method-override')
-var session = require('express-session')
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const fs = require('fs')
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const methodOverride = require('method-override')
+const session = require('express-session')
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var productsRouter = require('./routes/products')
+var rememberMiddleware = require('./middlewares/rememberMiddleware')
 var app = express();
 
 // view engine setup
@@ -22,6 +24,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(methodOverride('_method')) //Procesamientos PUT y DELETE
 app.use(session({secret: 'Secreto'}))
+app.use(rememberMiddleware)
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);

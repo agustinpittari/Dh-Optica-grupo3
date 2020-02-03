@@ -12,6 +12,7 @@ const controller = {
         let producto = products.find(p => p.id == id)
         res.render('Product/details', {
             producto: producto,
+            usuarioLogueado: req.session.usuarioLogueado
         })
     },
     createForm: (req, res) => {

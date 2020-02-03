@@ -20,7 +20,7 @@
         <div class="articles-container container">
                 <div class="row articulos">
                         <% for(i = 0; i < productos.length; i++) { %>
-                                <%- include('./partials/articulos') %>
+                                <%- include('./partials/articulos', {productos:productos}) %>
                                 <% } %>
                         </div>
                 </div>

@@ -11,21 +11,43 @@
         <div class="producto-container">
             <h2>Producto nuevo</h2>
             <form method="POST" action="/products/create">
-                <label for="nombre">Nombre</label><br>
-                <input type="text" name="name" id="nombre"><br>
-                <label for="descripcion">Descripcion</label><br>
-                <input type="text" name="description" id="descripcion"><br>
-                <label for="categoria">Categoria</label><br>
-                <input type="text" name="category" id="categoria"><br>
-                <label for="precio">Precio</label><br>
-                <input type="number" name="price" id="precio"><br>
-                <label for="color">Colores</label><br>
-                <input type="text" name="colors" id="color"><br>
-                <br>
-                <button class="btn btn-dark" type="submit">Agregar Producto</button>
-            </form>
-        </div>
-        
-        <%- include('../partials/footer') %>
+                <div>
+                    <label for="nombre">Nombre</label><br>
+                    <input type="text" name="name" id="nombre">
+                </div>
+                <div>
+                    <label for="descripcion">Descripcion</label><br>
+                    <input type="text" name="description" id="descripcion">
+                </div>
+                <div>
+                    <label for="categoria">Categoria</label><br>
+                    <select name="category" id="">
+                        <% for (let i = 0; i < categorias.length; i++) { %>
+                        <option value="<%= categorias[i].id %>"><%= categorias[i].nombre %></option>
+                        <% } %>
+                    </select>
+                </div>
+                <div>
+                    <label for="categoria">Marca</label><br>
+                    <select name="category" id="">
+                        <% for (let i = 0; i < marcas.length; i++) { %>
+                        <option value="<%= marcas[i].id %>"><%= marcas[i].nombre %></option>
+                        <% } %>
+                    </select>
+                </div>
+                <div>
+                    <label for="precio">Precio</label><br>
+                    <input type="number" name="price" id="precio">
+                </div>
+                <div>
+                    <label for="color">Colores</label><br>
+                    <input type="text" name="colors" id="color">
+                </div>
+                <div>
+                    <button class="btn btn-dark" type="submit">Agregar Producto</button>
+                </div>
+                </form>
+            </div>
     </main>
+    <%- include('../partials/footer') %>
 </body>

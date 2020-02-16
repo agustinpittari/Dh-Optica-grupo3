@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const productsFilePath = path.join(__dirname, '../data/productos.json');
 const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
+const db = require('../database/models')
 
 const controller = {
     products: (req, res) => {
@@ -16,7 +17,17 @@ const controller = {
         })
     },
     createForm: (req, res) => {
-        res.render('Product/agregar-producto')
+        db.categorias.findAll()
+            .then(function(categorias){
+                db.marcas.findAll()
+                    .then(function(marcas){
+                        return res.render('Product/agregar-producto', {categorias: categorias, marcas: marcas})
+                    })
+            })
+            .catch(function(err){
+                console.log(err)
+                res.send(err)
+            })
     },
     create: (req, res) => {
 

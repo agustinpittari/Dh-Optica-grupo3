@@ -25,7 +25,7 @@ https://www.nomadeanteojos.com/probador/
 
 Por las funcionalidades implementadas
 
-##Tablero de trabajo
+###Tablero de trabajo
 https://trello.com/b/WzvI8J5w/dh-optica
 
 

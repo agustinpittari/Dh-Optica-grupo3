@@ -5,19 +5,17 @@ var productsController = require('../controllers/productsController')
 const guestMiddleware = require('../middlewares/guestMiddleware')
 const authMiddleware = require('../middlewares/authMiddleware')
 
-router.get('/', productsController.products) //Pagina de todos los productos
+router.get('/', productsController.products) //Todos los productos
 
-router.get('/create', authMiddleware, productsController.createForm) //Pagina de formulario de creacion de producto
+router.get('/create', authMiddleware, productsController.createForm) //Formulario de creacion de producto
 router.post('/create', productsController.create) //Guardado de producto
 
-router.get('/:id', productsController.productDetail) //Pagina de cada producto 
+router.get('/:id', productsController.productDetail) //Detalle de producto 
 
-router.get('/edit/:id', authMiddleware, productsController.edit) //Pagina de formulario de edicion
-router.put('/edit/:id', productsController.update) //Pagina de almacenamiento de edicion
+router.get('/edit/:id', authMiddleware, productsController.edit) //Formulario de edicion
+router.put('/edit/:id', productsController.update) //Almacenamiento de edicion
 
-router.delete('/delete/:id', authMiddleware,(req, res) => {
-    res.send('eliminado')
-})
+router.delete('/delete/:id', authMiddleware, productsController.delete)
 
 
 module.exports = router;

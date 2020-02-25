@@ -6,38 +6,35 @@
 <! HEAD -->
 
 <body>
-        
-        
-        <! HEADER -->
-        <%- include('./partials/header') %>
-        <! HEADER -->
-        
-        <! CARRUSEL DE PRODUCTOS -->
-        <%- include('./partials/carrusel') %>
-        <! CARRUSEL DE PRODUCTOS -->
-        
-        <! PRODUCTOS -->
-        <div class="articles-container container">
-                <div class="row articulos">
-                        <% for(i = 0; i < productos.length; i++) { %>
-                                <%- include('./partials/articulos', {productos:productos}) %>
+        <div class="container">
+                <! HEADER -->
+                <%- include('./partials/header') %>
+                <! HEADER -->
+                
+                <! CARRUSEL DE PRODUCTOS -->
+                <%- include('./partials/carrusel') %>
+                <! CARRUSEL DE PRODUCTOS -->
+                
+                <! PRODUCTOS -->
+                <div class="articles-container container">
+                        <div class="row articulos">
+                                <% for(i = 0; i < 12; i++) { %>
+                                <%- include('./partials/articulos') %>
                                 <% } %>
                         </div>
-                </div>
-                <form action="/products" method="get">
-                        <div class="button-container">
-                                <button type="submit" class="btn btn-primary">Ver todos los productos</button>
                         </div>
-                </form>
+                        <form action="/products" method="get">
+                                <div class="button-container">
+                                        <button type="submit" class="btn btn-primary">Ver todos los productos</button>
+                                </div>
+                        </form>
+                </div>
+                <! PRODUCTOS -->
+                
+                <! FOOTER -->
+                <%- include('./partials/footer') %>
+                <! FOOTER -->
         </div>
-        <! PRODUCTOS -->
-        
-        <! FOOTER -->
-        <%- include('./partials/footer') %>
-        <! FOOTER -->
-        
-        
-        
         
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"

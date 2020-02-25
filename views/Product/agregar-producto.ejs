@@ -10,18 +10,18 @@
     <main>
         <div class="producto-container">
             <h2>Producto nuevo</h2>
-            <form method="POST" action="/products/create">
+            <form method="POST" action="/products/create" enctype="multipart/form-data">
                 <div>
                     <label for="nombre">Nombre</label><br>
-                    <input type="text" name="name" id="nombre">
+                    <input type="text" name="nombre" id="nombre">
                 </div>
                 <div>
                     <label for="descripcion">Descripcion</label><br>
-                    <input type="text" name="description" id="descripcion">
+                    <input type="text" name="descripcion" id="descripcion">
                 </div>
                 <div>
                     <label for="categoria">Categoria</label><br>
-                    <select name="category" id="">
+                    <select name="categoria" id="">
                         <% for (let i = 0; i < categorias.length; i++) { %>
                         <option value="<%= categorias[i].id %>"><%= categorias[i].nombre %></option>
                         <% } %>
@@ -29,7 +29,7 @@
                 </div>
                 <div>
                     <label for="categoria">Marca</label><br>
-                    <select name="category" id="">
+                    <select name="marca" id="">
                         <% for (let i = 0; i < marcas.length; i++) { %>
                         <option value="<%= marcas[i].id %>"><%= marcas[i].nombre %></option>
                         <% } %>
@@ -37,11 +37,11 @@
                 </div>
                 <div>
                     <label for="precio">Precio</label><br>
-                    <input type="number" name="price" id="precio">
+                    <input type="number" name="precio" id="precio">
                 </div>
                 <div>
-                    <label for="color">Colores</label><br>
-                    <input type="text" name="colors" id="color">
+                    <label for="">Imagen/es</label>
+                    <input type="file" name="img" id="">
                 </div>
                 <div>
                     <button class="btn btn-dark" type="submit">Agregar Producto</button>

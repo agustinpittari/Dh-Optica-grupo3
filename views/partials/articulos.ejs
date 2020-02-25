@@ -3,7 +3,8 @@
       <img src="<%=productos[i].image%>" class="card-img-top" alt="Product image">
       <div class="card-body">
         <h5 class="card-title"><%= productos[i].name%></h5>
-        <p class="card-text"><%= productos[i].description%></p>
+        <p class="card-text">$<%= productos[i].price%></p>
+        <p class="card-text"><%= productos[i].category%></p>
         <a href="/products/<%= productos[i].id%>" class="btn btn-primary">Ver detalle</a>
       </div>
     </div>

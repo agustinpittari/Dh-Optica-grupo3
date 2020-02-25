@@ -1,80 +1,118 @@
 const fs = require('fs');
 const path = require('path');
-const productsFilePath = path.join(__dirname, '../data/productos.json');
-const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
 const db = require('../database/models')
 
 const controller = {
     products: (req, res) => {
-        res.render('Product/productos', {productos: products})
+        db.productos.findAll({
+            include: ['marca', 'categoria']
+        })
+        .then(productos => {
+            return res.render('Product/productos', {productos: productos})
+        })
+        .catch(function(err){
+            console.log(err)
+            res.send(err)
+        })
     },
     productDetail: (req, res) => {
-        let id = req.params.id
-        let producto = products.find(p => p.id == id)
-        res.render('Product/details', {
-            producto: producto,
-            usuarioLogueado: req.session.usuarioLogueado
+        db.productos.findByPk(req.params.id)
+        .then(producto => {
+            return res.render('Product/details', {
+                producto: producto,
+                usuarioLogueado: req.session.usuarioLogueado
+            })
+        })
+        .catch(function(err){
+            console.log(err)
+            res.send(err)
         })
     },
     createForm: (req, res) => {
         db.categorias.findAll()
-            .then(function(categorias){
-                db.marcas.findAll()
-                    .then(function(marcas){
-                        return res.render('Product/agregar-producto', {categorias: categorias, marcas: marcas})
-                    })
+        .then(function(categorias){
+            db.marcas.findAll()
+            .then(function(marcas){
+                return res.render('Product/agregar-producto', {categorias: categorias, marcas: marcas})
             })
-            .catch(function(err){
-                console.log(err)
-                res.send(err)
-            })
+        })
+        .catch(function(err){
+            console.log(err)
+            res.send(err)
+        })
     },
     create: (req, res) => {
-
-        let producto = {
-            id : products.length + 1,
-            name : req.body.name,
-            description : req.body.description,
-            category : req.body.category,
-            color : req.body.colors,
-            price : req.body.price
-        }
-        products.push(producto)
-
-        fs.writeFileSync(productsFilePath, JSON.stringify(products))
-
-        res.redirect('/products')
+        db.productos.create({ 
+            nombre : req.body.nombre,
+            descripcion : req.body.descripcion,
+            categoria_id : req.body.categoria,
+            marca_id: req.body.marca,
+            precio : req.body.precio
+        })
+        .then(producto => {
+             res.redirect('/products/')
+        })
+        .catch(function(err){
+            console.log(err)
+            res.send(err)
+        })     
     },
+
     edit: (req, res) => {
-		let producto = products.find(function (p) {
-			return p.id == req.params.id
-		})
-
-        res.render('Product/editProduct', {producto: producto})
+        db.productos.findByPk(req.params.id,
+            {
+                include: ['marca','categoria']
+            })
+        .then(producto => {
+            db.categorias.findAll()
+            .then(function(categorias){
+                db.marcas.findAll()
+                .then(function(marcas){
+                    return res.render('Product/editProduct', {producto:producto, categorias: categorias, marcas: marcas})
+                })
+            })
+        })
+        .catch(function(err){
+            console.log(err)
+            res.send(err)
+        }) 
     },
+    
     update: (req,res) => {
-		let arrayIndex
-
-		let product = products.find(function (p, index) {
-			if (p.id == req.params.id) {
-				arrayIndex = index
-				return true
-			}
-
-			return false
-		})
-		
-		let editado = {
-			...product,
-			...req.body
-		}
-
-		products[arrayIndex] = editado
-
-		fs.writeFileSync(productsFilePath, JSON.stringify(products))
-
-		res.redirect('/products/' + req.params.id)
+        db.productos.update({
+            nombre : req.body.nombre,
+            descripcion : req.body.descripcion,
+            categoria_id : req.body.categoria,
+            marca_id: req.body.marca,
+            precio : req.body.precio
+        },
+        {
+            where: {
+                id: req.params.id
+            }
+        })
+        .then(producto => {
+             res.redirect('/products')
+        })
+        .catch(function(err){
+            console.log(err)
+            res.send(err)
+        }) 
     },
+    delete: (req, res) => {
+        db.productos.destroy({
+            where: {
+                id: req.params.id
+            }
+        })
+        .then(producto => {
+            return res.redirect('/products')
+        })
+        .catch(function(err){
+            console.log(err)
+            res.send(err)
+        }) 
+    }
 }
 
 module.exports = controller

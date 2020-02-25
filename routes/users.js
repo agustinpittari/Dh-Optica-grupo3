@@ -2,8 +2,6 @@ const express = require('express');
 const router = express.Router();
 const fs = require('fs');
 const path = require('path');
-const bcrypt = require('bcrypt')
-const { check, validationResult, body } = require('express-validator')
 
 const userController = require('../controllers/userController')
 const usersFilePath = path.join(__dirname, '../data/users.json');
@@ -24,7 +22,7 @@ router.post('/register',userCreateMiddleware, userController.register)//Ruta par
 router.get('/edit/:id', authMiddleware, userController.editForm)//Formulario de edicion
 router.put('/edit/:id', userController.edit) //Guardado de usuario editado
 
-router.get('/login', userController.loginForm)//Login de usuario
+router.get('/login', guestMiddleware, userController.loginForm)//Login de usuario
 router.post('/login', userLoginMiddleware, userController.login)//validacion de login
 
 

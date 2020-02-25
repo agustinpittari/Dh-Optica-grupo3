@@ -68,11 +68,12 @@
                 </div>
                 <div class="datos">
                     
-                    <h3><%= producto.name %></h3>
-                    <p><%= producto.description %></p>
-                    <p>$<%= producto.price %></p>
-                    <p><%= producto.colors %></p>
-                    <p><%= producto.category%></p>
+                    <h3><%= producto.nombre %></h3>
+                    <p><%= producto.descripcion %></p>
+                    <p><%= producto.categoria_id%></p>
+                    <p><%= producto.marca_id%></p>
+                    <p>$<%= producto.precio %></p>
+
                     
                     <form name="formulario">
                         <input type="button" value="-" onClick="add(-1);">

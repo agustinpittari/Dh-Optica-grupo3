@@ -14,7 +14,8 @@
 }
 /* Productos */
 .article-box {
-    background-color: #ffffff;
+    background-color: #343a40!important;
+    color: white;
     border-radius: 5px;
     overflow: hidden;
     transition: 300ms;

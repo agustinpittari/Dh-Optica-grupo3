@@ -13,15 +13,22 @@
                 <section class="col-sm-12 col-md-6 col-lg-3">
                     <div class="article-box">
                         <a href="/products/<%= productos[i].id %>">
-                            <img src="<%= productos[i].image %>" alt="imagen producto"
+                            <img src="/images/<%= Math.floor(Math.random() * (3 - 1)) + 1 %>.png" alt="imagen producto"
                             class="imagen-producto">
                             <div class="article-data">
-                                <h3><%= productos[i].name %></h3>
-                                <p><%= productos[i].description %></p>
+                                <h3><%= productos[i].nombre %></h3>
                             </div>
                         </a>
-                        <p>$<%= productos[i].price %></p>
-                        <p><%= productos[i].colors %></p>
+                        <% if(productos[i].precio){ %>
+                            <p>$<%= productos[i].precio %></p>
+                        <% } %>
+                        <% if(productos[i].marca){ %>
+                            <p><%= productos[i].marca.nombre %></p>
+                        <% } %>
+                        <% if(productos[i].categoria){ %>
+                            <p><%= productos[i].categoria.nombre %></p>
+                        <% } %>
+
                     </div>
                 </section>
                 <% } %>

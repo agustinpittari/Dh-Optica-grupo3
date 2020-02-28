@@ -7,6 +7,8 @@ const authMiddleware = require('../middlewares/authMiddleware')
 
 router.get('/', productsController.products) //Todos los productos
 
+router.get('/search', productsController.search)
+
 router.get('/create', authMiddleware, productsController.createForm) //Formulario de creacion de producto
 router.post('/create', productsController.storage) //Guardado de producto
 

@@ -109,7 +109,7 @@ CREATE TABLE `productos` (
   KEY `marca_id` (`marca_id`),
   CONSTRAINT `productos_ibfk_1` FOREIGN KEY (`categoria_id`) REFERENCES `categorias` (`id`),
   CONSTRAINT `productos_ibfk_2` FOREIGN KEY (`marca_id`) REFERENCES `marcas` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -118,7 +118,7 @@ CREATE TABLE `productos` (
 
 LOCK TABLES `productos` WRITE;
 /*!40000 ALTER TABLE `productos` DISABLE KEYS */;
-INSERT INTO `productos` VALUES (1,'Ray ban rb3157','Anteojos',1,1576.00,NULL,1),(2,'Ray Ban Top Bar Rb3183','Anteojos',2,5599.00,NULL,1),(7,'Anteojos','Anteojos',1,1598.00,NULL,1),(8,'Ray Ban Top Bar Rb3183','asd',2,1058.00,NULL,1),(9,'','',NULL,NULL,NULL,NULL),(10,'','',NULL,NULL,NULL,NULL),(11,'','',NULL,NULL,NULL,NULL);
+INSERT INTO `productos` VALUES (1,'Ray ban rb3157','Anteojos',1,1576.00,NULL,1),(2,'Ray Ban Top Bar Rb3183','Anteojos',2,5599.00,NULL,1),(3,'Anteojos','Anteojos',1,1598.00,NULL,1),(4,'Ray Ban Top Bar Rb3183','asd',2,1058.00,NULL,1),(5,'asdas','asd',3,1234.00,NULL,1);
 /*!40000 ALTER TABLE `productos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -160,4 +160,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-02-25 19:01:38
+-- Dump completed on 2020-02-27 23:14:18

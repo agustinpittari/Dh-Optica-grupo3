@@ -41,21 +41,21 @@ const controller = {
             res.send(err)
         })
     },
-    create: (req, res) => {
-        db.productos.create({ 
+    storage: (req, res) => {
+        db.productos.create({
             nombre : req.body.nombre,
             descripcion : req.body.descripcion,
             categoria_id : req.body.categoria,
             marca_id: req.body.marca,
             precio : req.body.precio
         })
-        .then(producto => {
-             res.redirect('/products/')
+        .then(user => {
+            res.redirect('/products')
         })
         .catch(function(err){
             console.log(err)
             res.send(err)
-        })     
+        })   
     },
 
     edit: (req, res) => {

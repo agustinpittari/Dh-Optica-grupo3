@@ -2,13 +2,17 @@ const fs = require('fs');
 const path = require('path');
 const bcrypt = require('bcrypt')
 const { check, validationResult, body } = require('express-validator')
+const models = require('../database/models')
 
 const usersFilePath = path.join(__dirname, '../data/users.json');
 const users = JSON.parse(fs.readFileSync(usersFilePath, 'utf-8'));
 
 module.exports = {
     index: (req, res) => {
-        res.render('User/userList', {usuarios: users})
+        models.usuarios.findAll()
+        .then(function(users){
+            res.render('User/userList', {usuarios: users})
+        })
     },
     registerForm: (req, res) => {
         res.render('User/userRegister')
@@ -19,18 +23,17 @@ module.exports = {
         if(errors.isEmpty()){
             
             let usuario = {
-                id : users.length + 1,
                 first_name : req.body.first_name,
                 last_name : req.body.last_name,
                 email : req.body.email,
-                gender: req.body.gender,
+                gender_id: req.body.gender,
                 password: bcrypt.hashSync(req.body.password, 10)
             }
-            users.push(usuario)
-            
-            fs.writeFileSync(usersFilePath, JSON.stringify(users))
-            
-            res.redirect('/users')
+
+            models.usuarios.create(usuario)
+            .then(function () {
+                res.redirect('/users')
+            })
         } else {
             return res.render('User/userRegister' ,{errors: errors.errors, data: req.body})
         }
@@ -85,31 +88,37 @@ module.exports = {
         let errors = validationResult(req)
         
         if(errors.isEmpty()){
-            let usuarioALoguearse
-            for (let i = 0; i < users.length; i++) {
-                if (req.body.email == users[i].email){
-                    if(bcrypt.compareSync(req.body.password, users[i].password)){  
-                        usuarioALoguearse = users[i]
-                        break;
-                    } 
+            models.usuarios.findOne({where: {email: req.body.email}})
+            .then(function(user){
+                if(! user) {
+                    return res.render('User/userlogin', {
+                        errors: [{msg:'El email no es valido'}]
+                    })
+                } 
+                
+                if(bcrypt.compareSync(req.body.password, user.password)){
+                    delete user.password
+                    req.session.usuarioLogueado = user
+                } else {
+                    return res.render('User/userlogin', {
+                        errors: [{msg:'Credenciales invalidas'}]
+                    })
                 }
-            }
-            
-            if(usuarioALoguearse == undefined) {
-                return res.render('User/userlogin', {errors: [
-                    {msg:'Credenciales invalidas'}
-                ]})
-            }
-            
-            req.session.usuarioLogueado = usuarioALoguearse
 
-            if (req.body.recordame != undefined){
-                res.cookie('recordame',
-                usuarioALoguearse.email, {maxAge: 120000})
-            }
-            res.redirect('/users/' + req.session.usuarioLogueado.id)
+                if (req.body.recordame != undefined){
+                    res.cookie('recordame', user.email, {maxAge: 120000})
+                }
+
+                res.redirect('/users')
+            })
         } else {
             return res.render('User/userLogin' ,{errors: errors.errors, data: req.body})
         }
+    },
+
+    logout: function (req, res) {
+        req.session.destroy()
+
+        return res.redirect('/users/login')
     }
 }

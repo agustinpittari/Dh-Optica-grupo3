@@ -25,6 +25,8 @@ router.put('/edit/:id', userController.edit) //Guardado de usuario editado
 router.get('/login', guestMiddleware, userController.loginForm)//Login de usuario
 router.post('/login', userLoginMiddleware, userController.login)//validacion de login
 
+router.get('/logout', userController.logout)
+
 
 router.get('/:id', userController.detail)//Detalle de usuario
 

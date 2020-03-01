@@ -8,26 +8,30 @@
         <! HEADER -->
         <%- include('../partials/header') %>
         <! HEADER -->
-        <div class="datos">
-            
-            <h3><%= producto.nombre %></h3>
-            <p><%= producto.descripcion %></p>
-            <p><%= producto.categoria_id%></p>
-            <p><%= producto.marca_id%></p>
-            <p>$<%= producto.precio %></p>
-            <button type="button" class="btn btn-info">Comprar</button>
-            <button type="button" class="btn btn-success">Agregar a carrito</button>
-            <% if(usuarioLogueado != undefined) {%> 
-                <form action="/products/edit/<%= producto.id %>" method="get">
-                    <button type="submit" class="btn btn-danger">Editar</button>
-                </form>
-                <form action="/products/delete/<%= producto.id %>?_method=DELETE" method="POST">
-                    <button type="submit" class="btn btn-danger">Eliminar</button>
-                </form>
+        <div class="detalle">
+            <div class="imagenes">
+                <img src="/images/<%= Math.floor(Math.random() * (3 - 1)) + 1 %>.png" alt="imagen producto" class="imagen-producto">
+            </div>
+            <div class="datos">
+                <h3><%= producto.nombre %></h3>
+                <p><%= producto.descripcion %></p>
+                <p><%= producto.categoria.nombre %></p>
+                <p><%= producto.marca.nombre%></p>
+                <p><b>$<%= producto.precio %></b></p>
+                <button type="button" class="btn btn-success">Comprar</button>
+                <button type="button" class="btn btn-info">Agregar a carrito</button>
+                <% if(usuarioLogueado != undefined) {%> 
+                    <form class="editar" action="/products/edit/<%= producto.id %>" method="get">
+                        <div><button type="submit" class="btn btn-danger">Editar</button></div>
+                    </form>
+                    <form class="editar" action="/products/delete/<%= producto.id %>?_method=DELETE" method="POST">
+                        <div><button type="submit" class="btn btn-danger">Eliminar</button></div>
+                    </form>
                 <% } %>
             </div>		               
-        </div>         
-
+            </div>       
+        </div>  
+        
         
         <! FOOTER -->
         <%- include('../partials/footer') %>

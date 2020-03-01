@@ -27,12 +27,13 @@
 .article-data {
     padding: 15px;
     position: relative;
-    display: flex;
+    display: block;
     align-items: center;
     flex-wrap: wrap;
 }
 .imagen-producto {
     width: 100%;
+    border: 2px solid #343a40
 }
 .button-container {
     position: relative;

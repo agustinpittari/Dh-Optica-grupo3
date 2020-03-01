@@ -33,7 +33,10 @@ const controller = {
         })
     },
     productDetail: (req, res) => {
-        db.productos.findByPk(req.params.id)
+        db.productos.findByPk(req.params.id,
+            {
+                include: ['marca', 'categoria']
+            })
         .then(producto => {
             return res.render('Product/details', {
                 producto: producto,

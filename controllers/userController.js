@@ -68,10 +68,11 @@ module.exports = {
 
 
     detail: (req, res) => {
-        let usuario = users.find(function(u){
-            return u.id == req.params.id
-        })
+      db.usuarios.findByPk(req.params.id)
+      .then(usuario => {
         res.render('User/userDetail', {usuario: usuario})
+      })
+        
     },
     loginForm: (req, res) => {
         res.render('User/userLogin')

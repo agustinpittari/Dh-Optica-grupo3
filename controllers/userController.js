@@ -2,14 +2,14 @@ const fs = require('fs');
 const path = require('path');
 const bcrypt = require('bcrypt')
 const { check, validationResult, body } = require('express-validator')
-const models = require('../database/models')
+const db = require('../database/models')
 
 const usersFilePath = path.join(__dirname, '../data/users.json');
 const users = JSON.parse(fs.readFileSync(usersFilePath, 'utf-8'));
 
 module.exports = {
     index: (req, res) => {
-        models.usuarios.findAll()
+        db.usuarios.findAll()
         .then(function(users){
             res.render('User/userList', {usuarios: users})
         })
@@ -41,39 +41,32 @@ module.exports = {
         
     },
     editForm: (req, res) => {
-        let usuario = users.find(function(u){
-            return u.id == req.params.id
+        db.usuarios.findByPk(req.params.id)
+        .then(usuario => {
+            res.render('User/userEdit', {usuario: usuario})
         })
         
-        res.render('User/userEdit', {usuario: usuario})
+       
     },
     edit: (req, res) => {
-        let arrayIndex
-        
-        let user = users.find(function (p, index) {
-            if (p.id == req.params.id) {
-                arrayIndex = index
-                return true
-            }
-            
-            return false
-        })
-        
-        let editado = {
-            ...user,
+        db.usuarios.update({
             first_name : req.body.first_name,
-            last_name : req.body.last_name,
-            email : req.body.email,
-            gender: req.body.gender,
-            password: bcrypt.hashSync(req.body.password, 10)
-        }
-        
-        users[arrayIndex] = editado
-        
-        fs.writeFileSync(usersFilePath, JSON.stringify(users))
-        
-        res.redirect('/users/' + req.params.id)
+                last_name : req.body.last_name,
+                email : req.body.email,
+                gender_id: req.body.gender,
+                password: bcrypt.hashSync(req.body.password, 10)
+        },
+        {
+            where: {
+                id: req.params.id
+            }
+        })
+        .then(users => {
+            res.redirect ('/users/' + req.params.id)
+        })
     },
+
+
     detail: (req, res) => {
         let usuario = users.find(function(u){
             return u.id == req.params.id
@@ -88,7 +81,7 @@ module.exports = {
         let errors = validationResult(req)
         
         if(errors.isEmpty()){
-            models.usuarios.findOne({where: {email: req.body.email}})
+            db.usuarios.findOne({where: {email: req.body.email}})
             .then(function(user){
                 if(! user) {
                     return res.render('User/userlogin', {

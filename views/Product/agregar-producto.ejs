@@ -15,16 +15,25 @@
                   <div class="col-md-6 mb-3">
                     <label for="validationDefault01">Nombre</label>
                     <input type="text" class="form-control" id="validationDefault01" name="nombre">
+                    <div class="invalid-feedback">
+                        Este campo es obligatorio y debe tener al menos 5 caracteres
+                      </div>
                   </div>
                   <div class="col-md-6 mb-3">
                     <label for="validationDefault03">Descripción</label>
                     <input type="text" class="form-control" id="validationDefault03" name="descripcion">
+                    <div class="invalid-feedback">
+                        Este campo es obligatorio y debe tener al menos 20 caracteres
+                      </div>
                 </div>
                 </div>
                 <div class="form-row">
                     <div class="col-md-4 mb-3">
                         <label for="validationDefault02">Precio</label>
                         <input type="text" class="form-control" id="validationDefault02" name="precio">
+                        <div class="invalid-feedback">
+                            Please choose a username.
+                          </div>
                     </div>
                     <div class="col-md-4 mb-3">
                         <label for="validationDefault04">Categoria</label>
@@ -34,6 +43,9 @@
                             <option value="<%= categorias[i].id %>"><%= categorias[i].nombre %></option>
                             <% } %>
                         </select>
+                        <div class="invalid-feedback">
+                            Please choose a username.
+                          </div>
                     </div>
                     <div class="col-md-4 mb-3">
                         <label for="validationDefault04">Marca</label>
@@ -43,6 +55,9 @@
                             <option value="<%= marcas[i].id %>"><%= marcas[i].nombre %></option>
                             <% } %>
                         </select>
+                        <div class="invalid-feedback">
+                            Please choose a username.
+                          </div>
                       </div>
                 </div>
                 </div>

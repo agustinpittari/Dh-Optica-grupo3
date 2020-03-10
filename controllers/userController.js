@@ -30,7 +30,7 @@ module.exports = {
                 password: bcrypt.hashSync(req.body.password, 10)
             }
 
-            models.usuarios.create(usuario)
+            db.usuarios.create(usuario)
             .then(function () {
                 res.redirect('/users')
             })

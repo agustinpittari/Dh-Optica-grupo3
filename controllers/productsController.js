@@ -1,6 +1,5 @@
-const fs = require('fs');
-const path = require('path');
 const db = require('../database/models')
+const { Op } = require("sequelize");
 
 const controller = {
     products: (req, res) => {
@@ -112,6 +111,21 @@ const controller = {
             console.log(err)
             res.send(err)
         }) 
+    },
+    buscar: (req, res) => {
+        db.productos.findAll({
+            include: ['marca', 'categoria'],
+            where: {
+                [Op.substring]: req.query.buscar
+            }
+        })
+        .then(productos => {
+            return res.render('Product/productos', {productos: productos})
+        })
+        .catch(function(err){
+            console.log(err)
+            res.send(err)
+        })
     }
 }
 

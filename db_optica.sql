@@ -148,6 +148,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
+INSERT INTO `usuarios` VALUES (1,'sebas','silva','sebastian.gaboto@hotmail.com',NULL,'$2b$10$7OjWEj0YuKmQBe4qnRttcu1foMAgHUVBDClNyBPRXxLBiVVbDKpQ.'),(2,'sebastian','silva','sebastian.gaboto@hotmail.com',NULL,'$2b$10$rhRGuJ0Zk7N.oodrWPKt2ejl7eLwIhTJDzgZCbHfIw5KNUgaQVlVS'),(3,'sebastian','silva','sebas@hotmail.com',NULL,'$2b$10$YljA7Jf9B.rry8Uwrbm0eu.aSIho/onjiLn6c9arxmQ88LtdpKBai'),(4,'ale','ale','ale@ale.com',NULL,'$2b$10$OqgBG27F/kVrwrPVksmRP.LldrCvZai3L/e/AEOnyJLlG1FcHPNFe');
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

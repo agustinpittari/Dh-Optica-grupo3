@@ -12,14 +12,8 @@
         <main>
             <div>
                 <h2>Crear Cuenta</h2>
-                <% if (typeof errors != 'undefined') { %>     
-                    <ul>
-                        <% for (i = 0; i < errors.length; i++) { %>
-                            <li><%= errors[i].msg%></li>        
-                            <% } %>
-                        </ul>
-                        <% } %>
-                        <form action="/users/register" method="POST">
+                
+                        <form action="/users/register" method="POST" id="userCreate">
                             <label for="nombre">Nombre</label><br>
                             <input type="text" name="first_name" id="nombre" value="<%= typeof data != 'undefined' ? data.first_name : '' %>"><br>
                             <label for="apellido">Apellido</label><br>
@@ -52,6 +46,7 @@
             <! FOOTER -->
             <%- include('../partials/footer') %>
             <! FOOTER -->
+            <script src="/js/UserCreateValidator.js"></script>
         </body>
         
         </html>

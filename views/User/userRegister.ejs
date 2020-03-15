@@ -12,26 +12,42 @@
         <main>
             <div>
                 <h2>Crear Cuenta</h2>
-                <% if (typeof errors != 'undefined') { %>     
-                    <ul>
-                        <% for (i = 0; i < errors.length; i++) { %>
-                            <li><%= errors[i].msg%></li>        
-                            <% } %>
-                        </ul>
-                        <% } %>
-                        <form action="/users/register" method="POST">
-                            <label for="nombre">Nombre</label><br>
-                            <input type="text" name="first_name" id="nombre" value="<%= typeof data != 'undefined' ? data.first_name : '' %>"><br>
-                            <label for="apellido">Apellido</label><br>
-                            <input type="text" name="last_name" id="apellido" value="<%= typeof data != 'undefined' ? data.last_name: '' %>"><br>
-                            <label for="email">Email</label><br>
-                            <input type="email" name="email" id="email" value="<%= typeof data != 'undefined' ? data.email : '' %>"><br>
-                            <label for="contrasenia">Contraseña</label><br>
-                            <input type="password" name="password" id="contrasenia"><br>
-                            <input type="checkbox" name="" id="tyc">
-                            <label for="tyc">Leí y acepto los <a href="">Terminos y Condiciones</a></label><br>
-                            <button class="btn btn-dark" type="submit">Registrarse</button>
-                        </form>
+                
+                        <form action="/users/register" method="POST" id="userCreate">
+                            <div class="form-row">
+                              <div class="col-md-6 mb-3">
+                                <label for="validationDefault01">Nombre</label>
+                                <input type="text" class="form-control" id="validationDefault01" value="<%= typeof data != 'undefined' ? data.first_name: '' %>" required name="first_name">
+                                <div class='invalid-feedback'></div>
+                              </div>
+                              <div class="col-md-6 mb-3">
+                                <label for="validationDefault02">Apellido</label>
+                                <input type="text" class="form-control" id="validationDefault02" value="<%= typeof data != 'undefined' ? data.last_name: '' %>" required name="last_name">
+                                <div class='invalid-feedback'></div>
+                              </div>
+                            </div>
+                            <div class="form-row">
+                              <div class="col-md-6 mb-3">
+                                <label for="validationDefault03">Email</label>
+                                <input type="email" class="form-control" id="validationDefault03" required value="<%= typeof data != 'undefined' ? data.email : '' %>" name="email">
+                                <div class='invalid-feedback'></div>
+                              </div>
+                              <div class="col-md-6 mb-3">
+                                <label for="validationDefault05">Contraseña</label>
+                                <input type="password" class="form-control" id="validationDefault05" required name="password">
+                                <div class='invalid-feedback'></div>
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="invalidCheck2" required>
+                                <label class="form-check-label" for="invalidCheck2">
+                                  Lei y acepto los terminos
+                                </label>
+                              </div>
+                            </div>
+                            <button class="btn btn-primary" type="submit">Registrarse</button>
+                          </form>
                     </div>
                 </main>
                 
@@ -52,6 +68,8 @@
             <! FOOTER -->
             <%- include('../partials/footer') %>
             <! FOOTER -->
+            <script src="/js/validator.js"></script>
+            <script src="/js/UserCreateValidator.js"></script>
         </body>
         
         </html>

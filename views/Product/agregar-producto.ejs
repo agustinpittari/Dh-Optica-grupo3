@@ -7,44 +7,65 @@
     <%- include('../partials/header') %>
     <! HEADER -->
     
-    <main>
+    <main class="container">
         <div class="producto-container">
             <h2>Producto nuevo</h2>
-            <form method="POST" action="/products/create">
-                <div>
-                    <p>as</p>
-                    <label for="nombre">Nombre</label><br>
-                    <input type="text" name="nombre" id="nombre">
+            <form method="POST" action="/products/create" id="productCreate">
+                <div class="form-row">
+                  <div class="col-md-6 mb-3">
+                    <label for="validationDefault01">Nombre</label>
+                    <input type="text" class="form-control" id="validationDefault01" name="nombre">
+                    <div class="invalid-feedback">
+                        Este campo es obligatorio y debe tener al menos 5 caracteres
+                      </div>
+                  </div>
+                  <div class="col-md-6 mb-3">
+                    <label for="validationDefault03">Descripción</label>
+                    <input type="text" class="form-control" id="validationDefault03" name="descripcion">
+                    <div class="invalid-feedback">
+                        Este campo es obligatorio y debe tener al menos 20 caracteres
+                      </div>
                 </div>
-                <div>
-                    <label for="descripcion">Descripcion</label><br>
-                    <input type="text" name="descripcion" id="descripcion">
                 </div>
-                <div>
-                    <label for="categoria">Categoria</label><br>
-                    <select name="categoria" id="">
-                        <% for (let i = 0; i < categorias.length; i++) { %>
-                        <option value="<%= categorias[i].id %>"><%= categorias[i].nombre %></option>
-                        <% } %>
-                    </select>
+                <div class="form-row">
+                    <div class="col-md-4 mb-3">
+                        <label for="validationDefault02">Precio</label>
+                        <input type="text" class="form-control" id="validationDefault02" name="precio">
+                        <div class="invalid-feedback">
+                            Please choose a username.
+                          </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="validationDefault04">Categoria</label>
+                        <select class="custom-select" id="validationDefault04" name="categoria">
+                            <option selected disabled value="">Elegir...</option>
+                            <% for (let i = 0; i < categorias.length; i++) { %>
+                            <option value="<%= categorias[i].id %>"><%= categorias[i].nombre %></option>
+                            <% } %>
+                        </select>
+                        <div class="invalid-feedback">
+                            Please choose a username.
+                          </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="validationDefault04">Marca</label>
+                        <select class="custom-select" id="validationDefault04" name="marca">
+                            <option selected disabled value="">Elegir...</option>
+                            <% for (let i = 0; i < marcas.length; i++) { %>
+                            <option value="<%= marcas[i].id %>"><%= marcas[i].nombre %></option>
+                            <% } %>
+                        </select>
+                        <div class="invalid-feedback">
+                            Please choose a username.
+                          </div>
+                      </div>
                 </div>
-                <div>
-                    <label for="categoria">Marca</label><br>
-                    <select name="marca" id="">
-                        <% for (let i = 0; i < marcas.length; i++) { %>
-                        <option value="<%= marcas[i].id %>"><%= marcas[i].nombre %></option>
-                        <% } %>
-                    </select>
                 </div>
-                <div>
-                    <label for="precio">Precio</label><br>
-                    <input type="number" name="precio" id="precio">
-                </div>
-                <div>
-                    <button class="btn btn-dark" type="submit">Agregar Producto</button>
-                </div>
-                </form>
-            </div>
+                <button class="btn btn-dark" type="submit">Agregar Producto</button>
+              </form>
+        </div>
     </main>
     <%- include('../partials/footer') %>
+    <script src="/js/validator.js"></script>
+    <script defer src="/js/productsValidator.js"></script>
 </body>

@@ -1,6 +1,6 @@
 CREATE DATABASE  IF NOT EXISTS `db_optica` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
 USE `db_optica`;
--- MySQL dump 10.13  Distrib 5.7.29, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.28, for Win32 (AMD64)
 --
 -- Host: localhost    Database: db_optica
 -- ------------------------------------------------------
@@ -28,7 +28,7 @@ CREATE TABLE `categorias` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(20) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -37,7 +37,6 @@ CREATE TABLE `categorias` (
 
 LOCK TABLES `categorias` WRITE;
 /*!40000 ALTER TABLE `categorias` DISABLE KEYS */;
-INSERT INTO `categorias` VALUES (1,'Recetados'),(2,'De contacto'),(3,'De Sol');
 /*!40000 ALTER TABLE `categorias` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -76,7 +75,7 @@ CREATE TABLE `marcas` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -85,7 +84,6 @@ CREATE TABLE `marcas` (
 
 LOCK TABLES `marcas` WRITE;
 /*!40000 ALTER TABLE `marcas` DISABLE KEYS */;
-INSERT INTO `marcas` VALUES (1,'RayBan');
 /*!40000 ALTER TABLE `marcas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -109,7 +107,7 @@ CREATE TABLE `productos` (
   KEY `marca_id` (`marca_id`),
   CONSTRAINT `productos_ibfk_1` FOREIGN KEY (`categoria_id`) REFERENCES `categorias` (`id`),
   CONSTRAINT `productos_ibfk_2` FOREIGN KEY (`marca_id`) REFERENCES `marcas` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -118,7 +116,6 @@ CREATE TABLE `productos` (
 
 LOCK TABLES `productos` WRITE;
 /*!40000 ALTER TABLE `productos` DISABLE KEYS */;
-INSERT INTO `productos` VALUES (1,'Ray ban rb3157','Anteojos',1,1576.00,NULL,1),(2,'Ray Ban Top Bar Rb3183','Anteojos',2,5599.00,NULL,1),(3,'Anteojos','Anteojos',1,1598.00,NULL,1),(4,'Ray Ban Top Bar Rb3183','asd',2,1058.00,NULL,1),(5,'asdas','asd',3,1234.00,NULL,1);
 /*!40000 ALTER TABLE `productos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -131,15 +128,15 @@ DROP TABLE IF EXISTS `usuarios`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `usuarios` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(50) NOT NULL,
-  `apellido` varchar(50) NOT NULL,
+  `first_name` varchar(50) NOT NULL,
+  `last_name` varchar(50) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `genero_id` int(11) DEFAULT NULL,
-  `contrasenia` varchar(100) NOT NULL,
+  `gender_id` int(11) DEFAULT NULL,
+  `password` varchar(100) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `genero_id` (`genero_id`),
-  CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`genero_id`) REFERENCES `generos` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  KEY `genero_id` (`gender_id`),
+  CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`gender_id`) REFERENCES `generos` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -161,4 +158,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-02-27 23:14:18
+-- Dump completed on 2020-03-10 14:30:39

@@ -6,17 +6,17 @@
 <! HEAD -->
 
 <body>
+        <! HEADER -->
+        <%- include('./partials/header') %>
+        <! HEADER -->
+        
+        <! CARRUSEL DE PRODUCTOS -->
+        <%- include('./partials/carrusel') %>
+        <! CARRUSEL DE PRODUCTOS -->
+        
+        <! PRODUCTOS -->
         <div class="container">
-                <! HEADER -->
-                <%- include('./partials/header') %>
-                <! HEADER -->
-                
-                <! CARRUSEL DE PRODUCTOS -->
-                <%- include('./partials/carrusel') %>
-                <! CARRUSEL DE PRODUCTOS -->
-                
-                <! PRODUCTOS -->
-                <div class="articles-container container">
+                <div class="articles-container">
                         <div class="row articulos">
                                 <% for(i = 0; i < productos.length; i++) { %>
                                         <section class="col-sm-12 col-md-6 col-lg-3">
@@ -29,42 +29,33 @@
                                                                 </div>
                                                         </a>
                                                         <% if(productos[i].precio){ %>
-                                                                <p>$<%= productos[i].precio %></p>
-                                                                <% } %>
-                                                                <% if(productos[i].marca){ %>
-                                                                        <p><%= productos[i].marca.nombre %></p>
-                                                                        <% } %>
-                                                                        <% if(productos[i].categoria){ %>
-                                                                                <p><%= productos[i].categoria.nombre %></p>
-                                                                                <% } %>
-                                                                                
-                                                                        </div>
-                                                                </section>
-                                                                <% } %>
-                                                        </div>
+                                                        <p>$<%= productos[i].precio %></p>
+                                                        <% } %>
+                                                        <% if(productos[i].marca){ %>
+                                                        <p><%= productos[i].marca.nombre %></p>
+                                                        <% } %>
+                                                        <% if(productos[i].categoria){ %>
+                                                        <p><%= productos[i].categoria.nombre %></p>
+                                                        <% } %>
+                                                                                        
                                                 </div>
-                                                <form action="/products" method="get">
-                                                        <div class="button-container">
-                                                                <button type="submit" class="btn btn-primary">Ver todos los productos</button>
-                                                        </div>
-                                                </form>
-                                        </div>
-                                        <! PRODUCTOS -->
-                                        
-                                        <! FOOTER -->
-                                        <%- include('./partials/footer') %>
-                                        <! FOOTER -->
-                                </div>
-                                
-                                <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-                                integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-                                crossorigin="anonymous"></script>
-                                <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-                                integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-                                crossorigin="anonymous"></script>
-                                <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-                                integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-                                crossorigin="anonymous"></script>
-                        </body>
+                                        </section>
+                                <% } %>
+                        </div>
+                </div>
+                <form action="/products" method="get">
+                        <div class="button-container">
+                                <button type="submit" class="btn btn-primary">Ver todos los productos</button>
+                        </div>
+                </form>
+        </div>
+
+        <! PRODUCTOS -->
+        
+        <! FOOTER -->
+        <%- include('./partials/footer') %>
+        <! FOOTER -->
+
+</body>
                         
-                        </html>
+</html>

@@ -131,15 +131,15 @@ DROP TABLE IF EXISTS `usuarios`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `usuarios` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(50) NOT NULL,
-  `apellido` varchar(50) NOT NULL,
+  `first_name` varchar(50) NOT NULL,
+  `last_name` varchar(50) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `genero_id` int(11) DEFAULT NULL,
-  `contrasenia` varchar(100) NOT NULL,
+  `gender_id` int(11) DEFAULT NULL,
+  `password` varchar(100) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `genero_id` (`genero_id`),
-  CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`genero_id`) REFERENCES `generos` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  KEY `genero_id` (`gender_id`),
+  CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`gender_id`) REFERENCES `generos` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --

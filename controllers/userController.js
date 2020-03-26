@@ -1,11 +1,6 @@
-const fs = require('fs');
-const path = require('path');
 const bcrypt = require('bcrypt')
 const { check, validationResult, body } = require('express-validator')
 const db = require('../database/models')
-
-const usersFilePath = path.join(__dirname, '../data/users.json');
-const users = JSON.parse(fs.readFileSync(usersFilePath, 'utf-8'));
 
 module.exports = {
     index: (req, res) => {
@@ -100,7 +95,7 @@ module.exports = {
                 }
 
                 if (req.body.recordame != undefined){
-                    res.cookie('recordame', user.email, {maxAge: 120000})
+                    res.cookie('recordame', user.email, {maxAge: 120 * 100 * 100 * 100})
                 }
 
                 res.redirect('/users')

@@ -8,6 +8,7 @@ const session = require('express-session')
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
+const apiUsers = require('./routes/api/users');
 const productsRouter = require('./routes/products')
 const apiProducts = require('./routes/api/products')
 const rememberMiddleware = require('./middlewares/rememberMiddleware')
@@ -28,6 +29,7 @@ app.use(rememberMiddleware)
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/api/users', apiUsers);
 app.use('/products', productsRouter);
 app.use('/api/products', apiProducts)
 

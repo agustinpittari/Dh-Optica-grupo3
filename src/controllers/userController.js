@@ -32,16 +32,12 @@ module.exports = {
         } else {
             return res.render('User/userRegister' ,{errors: errors.errors, data: req.body})
         }
-        
-        
     },
     editForm: (req, res) => {
         db.usuarios.findByPk(req.params.id)
         .then(usuario => {
             res.render('User/userEdit', {usuario: usuario})
         })
-        
-       
     },
     edit: (req, res) => {
         db.usuarios.update({
@@ -60,17 +56,13 @@ module.exports = {
             res.redirect ('/users/' + req.params.id)
         })
     },
-
-
     detail: (req, res) => {
       db.usuarios.findByPk(req.params.id)
       .then(usuario => {
         res.render('User/userDetail', {usuario: usuario})
       })
-        
     },
     loginForm: (req, res) => {
-        res.render('User/userLogin')
         
     },
     login: (req, res) => {
@@ -79,7 +71,7 @@ module.exports = {
         if(errors.isEmpty()){
             db.usuarios.findOne({where: {email: req.body.email}})
             .then(function(user){
-                if(! user) {
+                if(!user) {
                     return res.render('User/userlogin', {
                         errors: [{msg:'El email no es valido'}]
                     })

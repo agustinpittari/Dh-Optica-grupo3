@@ -1,5 +1,3 @@
-const bcrypt = require('bcrypt')
-const { check, validationResult, body } = require('express-validator')
 const db = require('../../database/models')
 
 module.exports = {
@@ -38,23 +36,18 @@ module.exports = {
     detail: (req, res) => {
         db.usuarios.findByPk(req.params.id)
         .then(usuario => {
-            dataUsuario = []
-            for(let i = 0; i < usuario.length; i++){
-                dataUsuarios.push({
-                    id:usuarios[i].id,
-                    name:usuarios[i].first_name ,
-                    email:usuarios[i].email ,
-                    detail:'api/users/' + usuarios[i].id 
-                })
+            dataUsuario = {
+                id:usuario.id,
+                name:usuario.first_name ,
+                email:usuario.email ,
+                detail:'api/users/' + usuario.id,
             }
             let respuesta = {
                 meta: {
                     status: 200,
                     url: "/api/users/" + req.params.id
                 },
-                data: {
-                    usuario
-                }
+                dataUsuario
             }
             return res.json(respuesta)
         })

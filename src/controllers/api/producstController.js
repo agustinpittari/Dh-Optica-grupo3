@@ -4,7 +4,7 @@ const { Op } = require("sequelize");
 const controller = {
     list: (req, res) => {
         db.productos.findAll({
-            include: ['marca', 'categoria']
+            include: ['marcas', 'categorias']
         })
         .then(productos => {
             dataProductos = []
@@ -15,7 +15,7 @@ const controller = {
                     id:productos[i].id,
                     name:productos[i].nombre ,
                     description:productos[i].descripcion ,
-                    category: productos[i].categoria.nombre
+                    category: productos[i].categorias.nombre
 
                 })
             }
@@ -39,7 +39,7 @@ const controller = {
     find: (req, res) => {
         db.productos.findByPk(req.params.id,
             {
-                include: ['marca', 'categoria']
+                include: ['marcas', 'categorias']
             })
         .then(producto => {
             let respuesta = {
@@ -58,22 +58,6 @@ const controller = {
             console.log(err)
             res.send(err)
         })
-    },
-    store: (req, res) => {
-        db.productos.create({
-            nombre : req.body.nombre,
-            descripcion : req.body.descripcion,
-            categoria_id : req.body.categoria,
-            marca_id: req.body.marca,
-            precio : req.body.precio
-        })
-        .then(user => {
-            res.json({status:200})
-        })
-        .catch(function(err){
-            console.log(err)
-            res.send(err)
-        })   
     },
     }
     

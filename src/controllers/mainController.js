@@ -1,11 +1,9 @@
-const fs = require('fs');
-const path = require('path');
 const db = require('../database/models')
 
 const controller = {
     index:  (req, res) => {
         db.productos.findAll({
-            include: ['marca', 'categoria']
+            include: ['marcas', 'categorias']
         })
         .then(productos => {
             return res.render('index', {productos: productos})

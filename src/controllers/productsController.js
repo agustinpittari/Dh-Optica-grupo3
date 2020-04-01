@@ -4,7 +4,7 @@ const { Op } = require("sequelize");
 const controller = {
     products: (req, res) => {
         db.productos.findAll({
-            include: ['marca', 'categoria']
+            include: ['marcas', 'categorias']
         })
         .then(productos => {
             return res.render('Product/productos', {productos: productos})
@@ -33,7 +33,7 @@ const controller = {
     productDetail: (req, res) => {
         db.productos.findByPk(req.params.id,
             {
-                include: ['marca', 'categoria']
+                include: ['marcas', 'categorias']
             })
         .then(producto => {
             return res.render('Product/details', {
@@ -79,7 +79,7 @@ const controller = {
     edit: (req, res) => {
         db.productos.findByPk(req.params.id,
             {
-                include: ['marca','categoria']
+                include: ['marcas','categoria']
             })
             .then(producto => {
                 db.categorias.findAll()

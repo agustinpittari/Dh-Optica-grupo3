@@ -1,8 +1,8 @@
 const form = document.querySelector('form#userLogin')
-
 const email = document.querySelector('input[name=email]')
-
 const password = document.querySelector('input[name=password]')
+
+const db = require('../../src/database/models')
 
 let errorImput = {};
 
@@ -32,6 +32,6 @@ password.addEventListener('blur', function(){
 
 form.addEventListener('submit', function(e){
     if (Object.keys(errorImput).length > 0) {
-    e.preventDefault
+        e.preventDefault
     }
 })

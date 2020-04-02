@@ -28,6 +28,10 @@ module.exports = function(sequelize, dataTypes) {
             type: dataTypes.STRING,
             alowNull: false
         },
+        img: {
+            type: dataTypes.STRING,
+            alowNull: true
+        }
 }
 
 let config = {

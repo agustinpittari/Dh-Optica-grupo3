@@ -12,7 +12,7 @@ module.exports = {
     registerForm: (req, res) => {
         res.render('User/userRegister')
     },
-    register: (req, res) => {
+    register: (req, res, next) => {
         let errors = validationResult(req)
         
         if(errors.isEmpty()){
@@ -22,7 +22,8 @@ module.exports = {
                 last_name : req.body.last_name,
                 email : req.body.email,
                 gender_id: req.body.gender,
-                password: bcrypt.hashSync(req.body.password, 10)
+                password: bcrypt.hashSync(req.body.password, 10),
+                img: req.files[0].filename
             }
 
             db.usuarios.create(usuario)
@@ -45,7 +46,8 @@ module.exports = {
                 last_name : req.body.last_name,
                 email : req.body.email,
                 gender_id: req.body.gender,
-                password: bcrypt.hashSync(req.body.password, 10)
+                password: bcrypt.hashSync(req.body.password, 10),
+                img: req.files[0].filename
         },
         {
             where: {
@@ -63,7 +65,7 @@ module.exports = {
       })
     },
     loginForm: (req, res) => {
-        
+        res.render('User/userlogin')
     },
     login: (req, res) => {
         let errors = validationResult(req)
@@ -90,7 +92,7 @@ module.exports = {
                     res.cookie('recordame', user.email, {maxAge: 120 * 100 * 100 * 100})
                 }
 
-                res.redirect('/users')
+                res.redirect('/users/' + user.id)
             })
         } else {
             return res.render('User/userLogin' ,{errors: errors.errors, data: req.body})

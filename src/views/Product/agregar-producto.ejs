@@ -10,7 +10,7 @@
     <main class="container">
         <div class="producto-container">
             <h2>Producto nuevo</h2>
-            <form method="POST" action="/products/create" id="productCreate">
+            <form method="POST" action="/products/create" id="productCreate" enctype="multipart/form-data">
                 <div class="form-row">
                   <div class="col-md-6 mb-3">
                     <label for="validationDefault01">Nombre</label>
@@ -32,7 +32,7 @@
                         <label for="validationDefault02">Precio</label>
                         <input type="text" class="form-control" id="validationDefault02" name="precio">
                         <div class="invalid-feedback">
-                            Please choose a username.
+                            
                           </div>
                     </div>
                     <div class="col-md-4 mb-3">
@@ -44,7 +44,7 @@
                             <% } %>
                         </select>
                         <div class="invalid-feedback">
-                            Please choose a username.
+                            
                           </div>
                     </div>
                     <div class="col-md-4 mb-3">
@@ -56,9 +56,13 @@
                             <% } %>
                         </select>
                         <div class="invalid-feedback">
-                            Please choose a username.
-                          </div>
-                      </div>
+                            
+                        </div>
+                    </div>
+                    <div>
+                      <label for="">Imagenes</label>
+                      <input type="file" name="avatar" id="">
+                    </div>
                 </div>
                 </div>
                 <button class="btn btn-dark" type="submit">Agregar Producto</button>

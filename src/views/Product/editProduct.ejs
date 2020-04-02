@@ -31,7 +31,7 @@
                     <label for="categoria">Marca</label><br>
                     <select name="marca">
                         <% for (let i = 0; i < marcas.length; i++) { %>
-                        <option value="<%= marcas[i].id %>" <%= producto.marca_id ? (producto.marca.id == marcas[i].id ) ? 'selected' : '' : ''%>><%= marcas[i].nombre %></option>
+                        <option value="<%= marcas[i].id %>" <%= producto.marca_id ? (producto.marcas.id == marcas[i].id ) ? 'selected' : '' : ''%>><%= marcas[i].nombre %></option>
                         <% } %>
                     </select>
                 </div>

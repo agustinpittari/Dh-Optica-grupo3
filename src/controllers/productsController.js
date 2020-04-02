@@ -59,7 +59,7 @@ const controller = {
             res.send(err)
         })
     },
-    storage: (req, res) => {
+    storage: (req, res, next) => {
         db.productos.create({
             nombre : req.body.nombre,
             descripcion : req.body.descripcion,
@@ -79,14 +79,14 @@ const controller = {
     edit: (req, res) => {
         db.productos.findByPk(req.params.id,
             {
-                include: ['marcas','categoria']
+                include: ['marcas','categoriasdo']
             })
             .then(producto => {
                 db.categorias.findAll()
                 .then(function(categorias){
                     db.marcas.findAll()
                     .then(function(marcas){
-                        return res.render('Product/editProduct', {producto:producto, categorias: categorias, marcas: marcas})
+                        return res.render('Product/editproduct', {producto:producto, categorias: categorias, marcas: marcas})
                     })
                 })
             })

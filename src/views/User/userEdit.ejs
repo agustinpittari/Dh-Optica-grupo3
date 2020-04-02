@@ -12,17 +12,36 @@
         <main>
             <div>
                 <h2>Editar información</h2>
-                <form action="/users/edit/<%=usuario.id%>?_method=PUT" method="POST">
-                    <label for="nombre">Nombre</label><br>
-                    <input type="text" name="first_name" id="nombre" value="<%= usuario.first_name %>"><br>
-                    <label for="apellido">Apellido</label><br>
-                    <input type="text" name="last_name" id="apellido" value="<%= usuario.last_name %>"><br>
-                    <label for="email">Email</label><br>
-                    <input type="email" name="email" id="email" value="<%= usuario.email %>"><br>
-                    <label for="contrasenia">Contraseña</label><br>
-                    <input type="text" name="password" id="contrasenia"><br>
-                    <input type="checkbox" name="" id="tyc">
-                    <button class="btn btn-dark" type="submit">Guardar cambios</button>
+                <form action="/users/edit/<%=usuario.id%>?_method=PUT" method="POST"enctype="multipart/form-data">
+                    <div class="form-row">
+                      <div class="col-md-6 mb-3">
+                        <label for="validationDefault01">Nombre</label>
+                        <input type="text" class="form-control" id="validationDefault01" value="<%= usuario.first_name %>" required name="first_name">
+                        <div class='invalid-feedback'></div>
+                      </div>
+                      <div class="col-md-6 mb-3">
+                        <label for="validationDefault02">Apellido</label>
+                        <input type="text" class="form-control" id="validationDefault02" value="<%= usuario.last_name %>" required name="last_name">
+                        <div class='invalid-feedback'></div>
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <div class="col-md-6 mb-3">
+                        <label for="validationDefault03">Email</label>
+                        <input type="email" class="form-control" id="validationDefault03" required value="<%= usuario.email %>" name="email">
+                        <div class='invalid-feedback'></div>
+                      </div>
+                      <div class="col-md-6 mb-3">
+                        <label for="validationDefault05">Contraseña</label>
+                        <input type="password" class="form-control" id="validationDefault05" required name="password">
+                        <div class='invalid-feedback'></div>
+                      </div>
+                      <div class="col-md-6 mb-3">
+                        <label for="validationDefault05">Avatar</label>
+                        <input type="file" class="form-control" id="validationDefault05" name="avatar">
+                      </div>
+                    </div>
+                    <button class="btn btn-primary" type="submit">Guardar cambios</button>
                 </form>
             </div>
         </main>

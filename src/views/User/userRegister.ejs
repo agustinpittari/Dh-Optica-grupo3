@@ -13,7 +13,7 @@
             <div>
                 <h2>Crear Cuenta</h2>
                 
-                        <form action="/users/register" method="POST" id="userCreate">
+                        <form action="/users/register" method="POST" id="userCreate" enctype="multipart/form-data">
                             <div class="form-row">
                               <div class="col-md-6 mb-3">
                                 <label for="validationDefault01">Nombre</label>
@@ -36,6 +36,10 @@
                                 <label for="validationDefault05">Contraseña</label>
                                 <input type="password" class="form-control" id="validationDefault05" required name="password">
                                 <div class='invalid-feedback'></div>
+                              </div>
+                              <div class="col-md-6 mb-3">
+                                <label for="validationDefault05">Avatar</label>
+                                <input type="file" class="form-control" id="validationDefault05" name="avatar">
                               </div>
                             </div>
                             <div class="form-group">

@@ -31,6 +31,10 @@ module.exports = function(sequelize, dataTypes) {
         img: {
             type: dataTypes.STRING,
             alowNull: true
+        },
+        img_path: {
+            type: dataTypes.INTEGER,
+            alowNull: true
         }
 }
 

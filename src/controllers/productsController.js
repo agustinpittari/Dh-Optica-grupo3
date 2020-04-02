@@ -60,12 +60,17 @@ const controller = {
         })
     },
     storage: (req, res, next) => {
+        let ruta = req.files[0].path
+        let rutaImg = ruta.slice(7)
+        
         db.productos.create({
             nombre : req.body.nombre,
             descripcion : req.body.descripcion,
             categoria_id : req.body.categoria,
             marca_id: req.body.marca,
-            precio : req.body.precio
+            precio : req.body.precio,
+            img: req.files[0].filename,
+            img_path: rutaImg
         })
         .then(user => {
             res.redirect('/products')
@@ -96,13 +101,18 @@ const controller = {
             }) 
         },
         
-        update: (req,res) => {
+        update: (req,res, next) => {
+            let ruta = req.files[0].path
+            let rutaImg = ruta.slice(7)
+            
             db.productos.update({
                 nombre : req.body.nombre,
                 descripcion : req.body.descripcion,
                 categoria_id : req.body.categoria,
                 marca_id: req.body.marca,
-                precio : req.body.precio
+                precio : req.body.precio,
+                img: req.files[0].filename,
+                img_path: rutaImg
             },
             {
                 where: {

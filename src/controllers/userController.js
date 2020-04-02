@@ -13,6 +13,10 @@ module.exports = {
         res.render('User/userRegister')
     },
     register: (req, res, next) => {
+        let ruta = req.files[0].path
+        let rutaImg = ruta.slice(7)
+        
+        console.log(req)
         let errors = validationResult(req)
         
         if(errors.isEmpty()){
@@ -23,7 +27,8 @@ module.exports = {
                 email : req.body.email,
                 gender_id: req.body.gender,
                 password: bcrypt.hashSync(req.body.password, 10),
-                img: req.files[0].filename
+                img: req.files[0].filename,
+                img_path: rutaImg
             }
 
             db.usuarios.create(usuario)
@@ -41,13 +46,17 @@ module.exports = {
         })
     },
     edit: (req, res) => {
+        let ruta = req.files[0].path
+        let rutaImg = ruta.slice(7)
+
         db.usuarios.update({
             first_name : req.body.first_name,
                 last_name : req.body.last_name,
                 email : req.body.email,
                 gender_id: req.body.gender,
                 password: bcrypt.hashSync(req.body.password, 10),
-                img: req.files[0].filename
+                img: req.files[0].filename,
+                img_path: rutaImg
         },
         {
             where: {

@@ -9,9 +9,13 @@
     <%- include('../partials/header') %>
     <! HEADER -->
     <div class="container">
-        <h1><%= usuario.first_name %> <%= usuario.last_name %></h1>
-        <p><%= usuario.email %></p>
-        <p><%= usuario.gender %></p>
+        <div class="media">
+            <img src="/<%= usuario.img_path%>" class="mr-3" alt="...">
+            <div class="media-body">
+              <h5 class="mt-0"><%= usuario.last_name %> <%= usuario.first_name %></h5>
+              Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+            </div>
+          </div>
     </div>
 
     <! FOOTER -->

@@ -32,6 +32,10 @@ module.exports = function(sequelize, dataTypes) {
         marca_id: {
             type: dataTypes.INTEGER,
             alowNull: true
+        },
+        img_path: {
+            type: dataTypes.INTEGER,
+            alowNull: true
         }
     }
 

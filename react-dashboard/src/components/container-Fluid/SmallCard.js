@@ -16,11 +16,14 @@ class SmallCard extends Component{
     }
 
     componentDidMount(){
-        this.apiCall("http://localhost:3001/api/products", this.mostrarProductos)
+        this.apiCall(this.props.url, this.mostrarProductos)
     }
 
     mostrarProductos = (data) => {
         console.log(data)
+        this.setState ({
+            cantidad: data.meta.count
+        })
     }
 
     render(){

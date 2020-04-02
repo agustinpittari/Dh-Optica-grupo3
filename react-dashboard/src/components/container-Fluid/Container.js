@@ -12,18 +12,18 @@ function Container(){
             </div>
             <div className="row">
                 <div className="col-md-4 mb-4">
-                    <SmallCard title="Productos"/>
+                    <SmallCard title="Productos" url="http://localhost:3001/api/products"/>
                 </div>
                 <div className="col-md-4 mb-4">
-                    <SmallCard title="Categorias"/>
+                    <SmallCard title="Categorias" url="http://localhost:3001/api/products"/>
                 </div>
                 <div className="col-md-4 mb-4">
-                    <SmallCard title="Usuarios"/>
+                    <SmallCard title="Usuarios" url="http://localhost:3001/api/users"/>
                 </div>
             </div>
             <div className="row">
                 <div className="col-lg-6 mb-4">
-                    <BigCard title="Ultimo producto"/>
+                    <BigCard title="Ultimo producto" url="http://localhost:3001/api/products"/>
                 </div>
                 <div className="col-lg-6 mb-4">						
                     <BigCard title="Categorias">
